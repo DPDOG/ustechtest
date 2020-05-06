@@ -1,0 +1,49 @@
+{% include "common/head.html" %}
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>All Players of Team <b>{{ team_name }}</b></h1>
+        <p class="lead">All players list here.</p>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Jersey #</th>
+                <th scope="col">Total Matches</th>
+                <th scope="col">Total Runs</th>
+                <th scope="col">Highest Score</th>
+                <th scope="col">Fifties</th>
+                <th scope="col">Hundreds</th>
+                <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for player in players %}
+                <tr>
+                    <td scope="row" plyid="{{ player.id }}">{{ forloop.counter }}</td>
+                    <td><a href="/player/?id={{ player.id }}"> <img src="{{ player.image_uri }}" class="playerimage" alt="{{ player.first_name }} {{ player.last_name }}"></a>
+                    </td>
+                    <td><a href="/player/?id={{ player.id }}">{{ player.first_name }} {{ player.last_name }}</a></td>
+                    <td>{{ player.player_jursey_no }}</td>
+                    <td>{{ player.total_matches }}</td>
+                    <td>{{ player.total_run }}</td>
+                    <td>{{ player.highest_score }}</td>
+                    <td>{{ player.total_fifties }}</td>
+                    <td>{{ player.total_hundreds }}</td>
+                    <td>{{ player.created_date }}</td>
+
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="10"><a href="/teams/" class="btn btn-sm btn-primary">Back to Teams</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main><!-- /.container -->
+
+{% include "common/foot.html" %}

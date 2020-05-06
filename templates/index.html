@@ -1,0 +1,93 @@
+{% include "common/head.html" %}
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>US Tech Cricket Test</h1>
+        <p class="lead">Select teams to search any match between them or follow bellow buttons for quick details.</p>
+        <form action="/search/" method="post">
+            {% csrf_token %}
+            <div class="row">
+
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <select class="form-control" name="team_one">
+                            <option value="0">Select Team One</option>
+                            {% for te in teams %}
+                                <option value="{{ te.id }}" {% if team_one == te.id %} selected="selected" {% endif %}>{{ te.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <select class="form-control" name="team_two">
+                            <option value="0">Select Team Two</option>
+                            {% for te in teams %}
+                                <option value="{{ te.id }}" {% if team_two == te.id %} selected="selected" {% endif %}>{{ te.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <button class="form-control btn btn-sm btn-primary">Search</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12">
+                <a href="/teams/" class="btn btn-sm btn-primary">All Teams</a>
+                <a href="/matches/" class="btn btn-sm btn-primary">All Matches</a>
+                <a href="/points/" class="btn btn-sm btn-primary">All Teams Points</a>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+            {% if matches %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Team #1</th>
+                        <th scope="col">Team #2</th>
+                        <th scope="col">Winner</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for match in matches %}
+                        <tr>
+                            <td scope="row" matchid="{{ match.id }}">{{ forloop.counter }}</td>
+                            <td><img src="{{ match.match_team_one_logo }}" alt="{{ match.match_team_one }}"
+                                     class="matchlogos"><img src="{{ match.match_team_two_logo }}"
+                                                             alt="{{ match.match_team_two }}"
+                                                             class="secondmatchall matchlogos">{{ match.match_title }}
+                            </td>
+                            <td>{{ match.match_date }}</td>
+                            <td><a href="/team/?id={{ match.match_team_one_id }}"> <img
+                                    src="{{ match.match_team_one_logo }}" alt="{{ match.match_team_one }}"
+                                    class="matchlogos">{{ match.match_team_one }}</a></td>
+                            <td><a href="/team/?id={{ match.match_team_two_id }}"><img
+                                    src="{{ match.match_team_two_logo }}" alt="{{ match.match_team_two }}"
+                                    class="matchlogos">{{ match.match_team_two }}</a></td>
+                            <td><a href="/team/?id={{ match.team_winner_id }}"><img src="{{ match.team_winner_logo }}"
+                                                                                    alt="{{ match.team_winner }}"
+                                                                                    class="matchlogos">{{ match.team_winner }}
+                            </a></td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+</main><!-- /.container -->
+
+{% include "common/foot.html" %}

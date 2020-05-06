@@ -1,0 +1,40 @@
+{% include "common/head.html" %}
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>All Matches of This Tournament</h1>
+        <p class="lead">All matches list here.</p>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Team #1</th>
+                <th scope="col">Team #2</th>
+                <th scope="col">Winner</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for match in matches %}
+                <tr>
+                    <td scope="row" matchid="{{ match.id }}">{{ forloop.counter }}</td>
+                <td><img src="{{ match.match_team_one_logo }}" alt="{{ match.match_team_one }}" class="matchlogos"><img src="{{ match.match_team_two_logo }}" alt="{{ match.match_team_two }}" class="secondmatchall matchlogos">{{ match.match_title }}</td>
+                <td>{{ match.match_date }}</td>
+                <td><a href="/team/?id={{ match.match_team_one_id }}"> <img src="{{ match.match_team_one_logo }}" alt="{{ match.match_team_one }}" class="matchlogos">{{ match.match_team_one }}</a></td>
+                    <td><a href="/team/?id={{ match.match_team_two_id }}"><img src="{{ match.match_team_two_logo }}" alt="{{ match.match_team_two }}" class="matchlogos">{{ match.match_team_two }}</a></td>
+                    <td><a href="/team/?id={{ match.team_winner_id }}"><img src="{{ match.team_winner_logo }}" alt="{{ match.team_winner }}" class="matchlogos">{{ match.team_winner }}</a></td>
+
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="10"><a href="/" class="btn btn-sm btn-primary">Back to Home</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main><!-- /.container -->
+
+{% include "common/foot.html" %}

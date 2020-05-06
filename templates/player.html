@@ -1,0 +1,56 @@
+{% include "common/head.html" %}
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1><b>{{ player.first_name }} {{ player.last_name }} ( {{ team_name }} )</b></h1>
+        <p class="lead">Player details here.</p>
+        <img src="{{ player.image_uri }}" alt="{{ player.first_name }} {{ player.last_name }}">
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <td><b>Name : </b></td>
+                    <td>{{ player.first_name }} {{ player.last_name }}</td>
+                </tr>
+                <tr>
+                    <td><b>Jersey No : </b></td>
+                    <td>{{ player.player_jursey_no }}</td>
+                </tr>
+                <tr>
+                    <td><b>Country : </b></td>
+                    <td>{{ team_name }}</td>
+                </tr>
+                <tr>
+                    <td><b>Total Matches : </b></td>
+                    <td>{{ player.total_matches }}</td>
+                </tr>
+                <tr>
+                    <td><b>Total Runs : </b></td>
+                    <td>{{ player.total_run }}</td>
+                </tr>
+                <tr>
+                    <td><b>Highest Score : </b></td>
+                    <td>{{ player.highest_score }}</td>
+                </tr>
+                <tr>
+                    <td><b>Total Fifties : </b></td>
+                    <td>{{ player.total_fifties }}</td>
+                </tr>
+                <tr>
+                    <td><b>Total Hundreds : </b></td>
+                    <td>{{ player.total_hundreds }}</td>
+                </tr><tr>
+                    <td><b>Date : </b></td>
+                    <td>{{ player.created_date }}</td>
+                </tr>
+
+            <tr>
+                <td colspan="10"><a href="/players/?id={{ player.country }}" class="btn btn-sm btn-primary">Back to Players</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main><!-- /.container -->
+
+{% include "common/foot.html" %}

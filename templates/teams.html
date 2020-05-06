@@ -1,0 +1,35 @@
+{% include "common/head.html" %}
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>All Teams</h1>
+        <p class="lead">All teams list here.</p>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Flag</th>
+                <th scope="col">Team Name</th>
+                <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for team in teams %}
+                <tr>
+                    <td scope="row" teamid="{{ team.id }}">{{ forloop.counter }}</td>
+                    <td><a href="/players/?id={{ team.id }}"> <img src="{{ team.logo_uri }}" class="imagecircle" alt="{{ team.name }}"></a></td>
+                    <td><a href="/players/?id={{ team.id }}">{{ team.name }}</a></td>
+                    <td>{{ team.created_date }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4"><a href="/" class="btn btn-sm btn-primary">Back to Home</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main><!-- /.container -->
+
+{% include "common/foot.html" %}

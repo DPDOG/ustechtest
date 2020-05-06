@@ -1,0 +1,40 @@
+{% include "common/head.html" %}
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>Team <b>{{ teams.name }}</b></h1>
+        <p class="lead">Team details here.</p>
+        <img src="{{ teams.logo_uri }}" alt="{{ teams.name }}" class="teamlogo">
+        <table class="table table-hover">
+            <tbody>
+                 <tr>
+                    <td><b>Country : </b></td>
+                    <td>{{ teams.name }}</td>
+                </tr>
+                 <tr>
+                    <td><b>Total Matches : </b></td>
+                    <td>{{ matches }}</td>
+                </tr>
+                 <tr>
+                    <td><b>Total Wins : </b></td>
+                    <td>{{ wins }}</td>
+                </tr>
+                 <tr>
+                    <td><b>Total Lost : </b></td>
+                    <td>{{ lost }}</td>
+                </tr>
+                 <tr>
+                    <td><b>Points : </b></td>
+                    <td>{{ points }}</td>
+                </tr>
+            <tr>
+                <td colspan="4"><a href="/matches/" class="btn btn-sm btn-primary">Back to Matches</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main><!-- /.container -->
+
+{% include "common/foot.html" %}
